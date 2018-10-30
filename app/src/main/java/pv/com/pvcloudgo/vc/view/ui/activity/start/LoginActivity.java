@@ -124,36 +124,46 @@ public class LoginActivity extends BaseActivity {
         params.put("name", phone);
         params.put("password", pwd);
 
-        mHttpHelper.post(Contants.API.LOGIN, params, new SpotsCallBack<LoginResp>(this) {
+        User user = new User();
+        user.setEmail("1306133728");
+        user.setId(154823374L);
+        user.setMobi("15527051132");
+        user.setNicheng("完美哥哥");
 
-
-            @Override
-            public void onSuccess(Response response, LoginResp userLoginRespMsg) {
-                if (userLoginRespMsg != null && userLoginRespMsg.getStatus().equals(BaseRespMsg.STATUS_SUCCESS)) {
-
-
-                    App application = App.getInstance();
-                    application.putUser(userLoginRespMsg.getResults().getMyUser(), userLoginRespMsg.getResults().getToken());
-                    setResult(RESULT_OK);
-                    finish();
-                } else {
-                    showNormalErr(userLoginRespMsg);
-                }
-
-
-            }
-
-            @Override
-            public void onError(Response response, int code, Exception e) {
-//                showFail();
-                testlogin();
-            }
-
-            @Override
-            public void onServerError(Response response, int code, String errmsg) {
-                ToastUtils.show(errmsg);
-            }
-        });
+        App application = App.getInstance();
+        application.putUser(user, "123456");
+        setResult(RESULT_OK);
+        finish();
+//        mHttpHelper.post(Contants.API.LOGIN, params, new SpotsCallBack<LoginResp>(this) {
+//
+//
+//            @Override
+//            public void onSuccess(Response response, LoginResp userLoginRespMsg) {
+//                if (userLoginRespMsg != null && userLoginRespMsg.getStatus().equals(BaseRespMsg.STATUS_SUCCESS)) {
+//
+//
+//                    App application = App.getInstance();
+//                    application.putUser(userLoginRespMsg.getResults().getMyUser(), userLoginRespMsg.getResults().getToken());
+//                    setResult(RESULT_OK);
+//                    finish();
+//                } else {
+//                    showNormalErr(userLoginRespMsg);
+//                }
+//
+//
+//            }
+//
+//            @Override
+//            public void onError(Response response, int code, Exception e) {
+////                showFail();
+//                testlogin();
+//            }
+//
+//            @Override
+//            public void onServerError(Response response, int code, String errmsg) {
+//                ToastUtils.show(errmsg);
+//            }
+//        });
 
 
     }
